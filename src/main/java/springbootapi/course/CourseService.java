@@ -1,10 +1,9 @@
-package springbootapi.topic;
+package springbootapi.course;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,11 +11,11 @@ import java.util.List;
  */
 
 @Service
-public class TopicService {
+public class CourseService {
 
 
     @Autowired
-    private TopicRepository topicRepository;
+    private CourseRepository courseRepository;
 
 /*    private List<Course> topics = new ArrayList<>(Arrays.asList(
             new Course("spring","Spring FrameWork","Spring Framework description"),
@@ -25,31 +24,35 @@ public class TopicService {
 
     ));*/
 
-    public List<Topic> getTopics(){
-        List<Topic> listOfTopics = new ArrayList<>();
-         topicRepository.findAll().forEach(listOfTopics::add);
-         return listOfTopics;
+    public List<Course> getAllCourses(){
+        List<Course> listOfCourses = new ArrayList<>();
+        courseRepository.findAll().forEach(listOfCourses::add);
+         return listOfCourses;
     }
 
-    public Topic getTopicById(String id) {
+    public Course getCourseById(String id) {
 //        return topics.stream().filter(t->t.getId().equals(id)).findFirst().get();
-        return topicRepository.findOne(id);
+        return courseRepository.findOne(id);
     }
 
-    public void addTopic(Topic topic) {
+    public void addCourse(Course course) {
 //        topics.add(springbootapi.course);
-        topicRepository.save(topic);
+        courseRepository.save(course);
     }
 
-    public void updateTopic(Topic topic, String id) {
+    public void updateCourse(Course course) {
         /*Course oldTopic = topics.stream().filter(t->t.getId().equals(id)).findFirst().get();
         topics.set(topics.indexOf(oldTopic),springbootapi.course);*/
 
-        topicRepository.save(topic);
+        courseRepository.save(course);
     }
 
-    public void deleteTopic(String id) {
+    public void deleteCourse(String id) {
 //        topics.removeIf(t->t.getId().equals(id));
-        topicRepository.delete(id);
+        courseRepository.delete(id);
+    }
+
+    public List<Course> getAllCoursesByTopic(String id) {
+        return courseRepository.findAllByTopicId(id);
     }
 }

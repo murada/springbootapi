@@ -1,0 +1,8 @@
+/target/
+
+/.idea/
+/.project
+/.classpath
+/springbootapi.iml
+/.settings/
+/.idea/kotlinc.xml
